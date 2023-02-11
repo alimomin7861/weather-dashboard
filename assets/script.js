@@ -13,7 +13,7 @@ function getLatLong (city){
       return response.json();
     })
     .then(function (data) {
-      //console.log(data.coord.lat);
+      // console.log(data.coord.lat);
       getForecast (data.coord.lat, data.coord.lon)
 
     });
@@ -30,16 +30,16 @@ function getForecast (lat, lon){
 
         // 1. Create the element
         var currentCity = document.createElement('h2');
-        currentDate = document.createElement('h2');
+        //var currentDate = document.createElement('h2');
+        var currentIcon = document.createElement('img');
         var currentTemp = document.createElement('p');
         var currentWind = document.createElement('p');
         var currentHumidity = document.createElement('p');
-        var icon = data.list[0].weather[0].icon
 
         // 2. Give it content
         currentCity.textContent = data.city.name;
-        //currentDate.textContent = moment.unix(data.list[0].dt).format("MM/DD/YYYY");
-        currentIcon =
+        // currentDate.textContent = (data.list[0].dt).format("MM/DD/YYYY");
+        currentIcon.setAttribute("scr",'https://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png')
         currentTemp.innerHTML = "Temp: <span>" + data.list[0].main.temp + " F</span>";
         currentWind.innerHTML = "Wind: <span>" + data.list[0].wind.speed + " MPH</span>";
         currentHumidity.innerHTML = "Humidity: <span>" + data.list[0].main.humidity + " %</span>";
@@ -49,19 +49,21 @@ function getForecast (lat, lon){
         currentCity.setAttribute('class', 'title')
 
         // 4. Append the new element to the page
-        currentWeatherContainer.append(currentCity, currentTemp, currentWind, currentHumidity)
+        currentWeatherContainer.append(currentCity, currentIcon, currentTemp, currentWind, currentHumidity)
         
 
         for (var i =1; i < 6; i++){
+            var futureIcon = document.createElement('img');
             var futureTemp = document.createElement('p');
             var futureWind = document.createElement('p');
             var futureHumidity = document.createElement('p');
 
+            futureIcon.setAttribute("scr",'https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
             futureTemp.innerHTML = "Temp: <span>" + data.list[i].main.temp + " F</span>";
             futureWind.innerHTML = "Wind: <span>" + data.list[i].wind.speed + " MPH</span>";
             futureHumidity.innerHTML = "Humidity: <span>" + data.list[i].main.humidity + " %</span>";
 
-            fiveDayWeatherContainer.append(futureTemp, futureWind, futureHumidity)
+            fiveDayWeatherContainer.append(futureIcon, futureTemp, futureWind, futureHumidity)
         }
 
 
