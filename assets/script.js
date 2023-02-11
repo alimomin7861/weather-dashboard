@@ -7,6 +7,7 @@ var currentWeatherContainer = document.getElementById("currentWeather");
 var fiveDayWeatherContainer = document.getElementById("fiveDayWeather");
 var searchHistory = document.getElementById("searchHistory");
 
+
 function getLatLong (city){
     var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIkey
     fetch(requestURL)
@@ -39,7 +40,8 @@ function getForecast (lat, lon){
 
         // 2. Give it content
         currentCity.textContent = data.city.name;
-        // currentDate.textContent = (data.list[0].dt).format("MM/DD/YYYY");
+        currentDate.textContent = dayjs().format('MM/DD/YYYY');
+        //console.log(new Date().toLocaleDateString());
         currentIcon.setAttribute("src",'https://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png')
         currentTemp.innerHTML = "Temp: <span>" + data.list[0].main.temp + " F</span>";
         currentWind.innerHTML = "Wind: <span>" + data.list[0].wind.speed + " MPH</span>";
@@ -68,16 +70,7 @@ function getForecast (lat, lon){
 
             fiveDayWeatherContainer.append(futureIcon, futureDate, futureTemp, futureWind, futureHumidity)
         }
-
-
-
-
-
-
-
-
     })
-
 
 }   
 
