@@ -63,7 +63,7 @@ function getForecast (lat, lon){
             var futureHumidity = document.createElement('p');
 
             futureIcon.setAttribute("src",'https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
-            //futureDate.textContent = 
+            //futureDate.textContent = (data.list[i].dt_txt).format("MM/DD/YYYY");
             futureTemp.innerHTML = "Temp: <span>" + data.list[i].main.temp + " F</span>";
             futureWind.innerHTML = "Wind: <span>" + data.list[i].wind.speed + " MPH</span>";
             futureHumidity.innerHTML = "Humidity: <span>" + data.list[i].main.humidity + " %</span>";
@@ -72,9 +72,7 @@ function getForecast (lat, lon){
         }
     })
 
-}   
-
-
+}
 
 searchBtn.addEventListener("click",function(){
     var city = cityName.value;
