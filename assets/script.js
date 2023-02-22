@@ -55,7 +55,7 @@ function getForecast (lat, lon){
         currentWeatherContainer.append(currentCity, currentDate, currentIcon, currentTemp, currentWind, currentHumidity)
         
 
-        for (var i =1; i < 6; i++){
+        for (var i =1; i < 4; i+=8){
             var futureIcon = document.createElement('img');
             var futureDate = document.createElement('h2');
             var futureTemp = document.createElement('p');
@@ -63,7 +63,7 @@ function getForecast (lat, lon){
             var futureHumidity = document.createElement('p');
 
             futureIcon.setAttribute("src",'https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
-            //futureDate.textContent = (data.list[i].dt_txt).format("MM/DD/YYYY");
+            futureDate.textContent = moment(data.list[i+1].dt_txt).format("MM/DD/YYYY");
             futureTemp.innerHTML = "Temp: <span>" + data.list[i].main.temp + " F</span>";
             futureWind.innerHTML = "Wind: <span>" + data.list[i].wind.speed + " MPH</span>";
             futureHumidity.innerHTML = "Humidity: <span>" + data.list[i].main.humidity + " %</span>";
@@ -78,5 +78,20 @@ searchBtn.addEventListener("click",function(){
     var city = cityName.value;
     getLatLong (city);
 
+    var searchedCity = document.createElement('button');
+    searchedCity.textContent = cityName.value
+    searchHistory.append(searchedCity);
+
+    localStorage.setItem("city", JSON.stringify(searchHistory));
+    console.log(searchHistory);
+
+
 
 })
+
+
+searchHistory.addEventListener("click", function(event){
+    getLatLong(event.target)
+    console.log(event.target);
+})
+
