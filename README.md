@@ -1,11 +1,12 @@
-GIVEN a weather dashboard with form inputs
-## WHEN I search for a city THEN I am presented with current and future conditions for that city
+# Weather Dashboard
 
-and that city is added to the search history
+## Link to deployed application
 
-## WHEN I view current weather conditions for that city THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
 
-## WHEN I view future weather conditions for that city THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+## Visual Representation
+![](./assets/images/IMG_0319.png)
+![](./assets/images/IMG_3803.png)
 
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+## Overview 
+The purpose of this project was to create a weather dashboard application that allows a user to get the current weather and the five day forecast for a given city via the 5 Day Weather Forecast API. The searched city is also added to a search history list where the user can see what cities they have searched previously. The cities in the search history are also clickable to pull in their current weather & five day weather forecast. 
+

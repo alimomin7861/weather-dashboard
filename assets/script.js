@@ -68,7 +68,7 @@ function getForecast (lat, lon){
             futureWind.innerHTML = "Wind: <span>" + data.list[i].wind.speed + " MPH</span>";
             futureHumidity.innerHTML = "Humidity: <span>" + data.list[i].main.humidity + " %</span>";
 
-            fiveDayWeatherContainer.append(futureIcon, futureDate, futureTemp, futureWind, futureHumidity)
+            fiveDayWeatherContainer.append(futureDate, futureIcon, futureTemp, futureWind, futureHumidity)
         }
     })
 
@@ -82,14 +82,13 @@ searchBtn.addEventListener("click",function(){
     getLatLong (city);
 
     var searchedCity = document.createElement('button');
-    searchedCity.textContent = cityName.value
+    searchedCity.textContent = cityName.value;
     searchHistory.append(searchedCity);
 
-    localStorage.setItem("city", JSON.stringify(searchHistory));
-    console.log(searchHistory);
-
-
-
+    
+    var previousSearched = JSON.parse(localStorage.getItem("city")) || []
+    previousSearched.push(city)
+    localStorage.setItem("city", JSON.stringify(previousSearched));
 })
 
 
@@ -97,6 +96,5 @@ searchHistory.addEventListener("click", function(event){
     currentWeatherContainer.textContent = "";
     fiveDayWeatherContainer.textContent = "";
     getLatLong(event.target.textContent)
-    
 })
 
