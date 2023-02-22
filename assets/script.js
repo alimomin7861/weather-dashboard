@@ -55,15 +55,15 @@ function getForecast (lat, lon){
         currentWeatherContainer.append(currentCity, currentDate, currentIcon, currentTemp, currentWind, currentHumidity)
         
 
-        for (var i =1; i < 4; i+=8){
-            var futureIcon = document.createElement('img');
+        for (var i =1; i < 35; i+=8){
             var futureDate = document.createElement('h2');
+            var futureIcon = document.createElement('img');
             var futureTemp = document.createElement('p');
             var futureWind = document.createElement('p');
             var futureHumidity = document.createElement('p');
 
-            futureIcon.setAttribute("src",'https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
             futureDate.textContent = moment(data.list[i+1].dt_txt).format("MM/DD/YYYY");
+            futureIcon.setAttribute("src",'https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
             futureTemp.innerHTML = "Temp: <span>" + data.list[i].main.temp + " F</span>";
             futureWind.innerHTML = "Wind: <span>" + data.list[i].wind.speed + " MPH</span>";
             futureHumidity.innerHTML = "Humidity: <span>" + data.list[i].main.humidity + " %</span>";
@@ -75,6 +75,9 @@ function getForecast (lat, lon){
 }
 
 searchBtn.addEventListener("click",function(){
+    currentWeatherContainer.textContent = "";
+    fiveDayWeatherContainer.textContent = "";
+
     var city = cityName.value;
     getLatLong (city);
 
@@ -91,7 +94,9 @@ searchBtn.addEventListener("click",function(){
 
 
 searchHistory.addEventListener("click", function(event){
-    getLatLong(event.target)
-    console.log(event.target);
+    currentWeatherContainer.textContent = "";
+    fiveDayWeatherContainer.textContent = "";
+    getLatLong(event.target.textContent)
+    
 })
 
