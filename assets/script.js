@@ -1,4 +1,4 @@
-var APIkey = 'c40b28aa33c2bef2881ab9e4f13c3ef7';
+var APIkey = 'd67349053c0491694c010eacc6312780';
 //var requestURL = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=' + APIkey
 
 var cityName = document.getElementById("cityName");

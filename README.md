@@ -1,7 +1,7 @@
 # Weather Dashboard
 
 ## Link to deployed application
-
+https://alimomin7861.github.io/weather-dashboard/
 
 ## Visual Representation
 ![](./assets/images/IMG_0319.png)
